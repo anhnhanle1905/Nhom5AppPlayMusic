@@ -1,5 +1,6 @@
 package com.hieunghia.dmt.appnghenhac.Model;
 
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -18,35 +19,20 @@ public class PlayList {
     @Expose
     private String hinhIcon;
 
-    public String getIDPlaylist() {
-        return iDPlaylist;
-    }
+    public String getIDPlaylist() { return iDPlaylist; }
 
-    public void setIDPlaylist(String iDPlaylist) {
-        this.iDPlaylist = iDPlaylist;
-    }
+    public void setIDPlaylist(String iDPlaylist) { this.iDPlaylist = iDPlaylist; }
 
-    public String getTen() {
-        return ten;
-    }
+    public String getTen() { return ten; }
 
-    public void setTen(String ten) {
-        this.ten = ten;
-    }
+    public void setTen(String ten) { this.ten = ten; }
 
-    public String getHinhNen() {
-        return hinhNen;
-    }
+    public String getHinhNen() { return hinhNen; }
 
-    public void setHinhNen(String hinhNen) {
-        this.hinhNen = hinhNen;
-    }
+    public void setHinhNen(String hinhNen) { this.hinhNen = hinhNen; }
 
-    public String getHinhIcon() {
-        return hinhIcon;
-    }
+    public String getHinhIcon() { return hinhIcon; }
 
-    public void setHinhIcon(String hinhIcon) {
-        this.hinhIcon = hinhIcon; }
+    public void setHinhIcon(String hinhIcon) { this.hinhIcon = hinhIcon; }
 
 }
