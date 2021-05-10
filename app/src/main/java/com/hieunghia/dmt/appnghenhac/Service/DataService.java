@@ -2,8 +2,10 @@ package com.hieunghia.dmt.appnghenhac.Service;
 
 import android.provider.MediaStore;
 
+import com.hieunghia.dmt.appnghenhac.Model.Album;
 import com.hieunghia.dmt.appnghenhac.Model.PlayList;
 import com.hieunghia.dmt.appnghenhac.Model.QuangCao;
+import com.hieunghia.dmt.appnghenhac.Model.TheLoaiHomNay;
 
 import java.util.List;
 
@@ -17,4 +19,10 @@ public interface DataService {
 
     @GET("playlistforcurent.php")
     Call<List<PlayList>> GetPlayListCurrentDay();
+
+    @GET("chudevatheloai.php")
+    Call<TheLoaiHomNay> GetCateGoryMusic();
+
+    @GET("album.php")
+    Call<List<Album>> GetAlbumHot();
 }
