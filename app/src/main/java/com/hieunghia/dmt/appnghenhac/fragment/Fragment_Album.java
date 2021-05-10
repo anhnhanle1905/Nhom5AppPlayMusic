@@ -5,11 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.hieunghia.dmt.appnghenhac.Adapter.AlbumAdapter;
 import com.hieunghia.dmt.appnghenhac.Model.Album;
 import com.hieunghia.dmt.appnghenhac.R;
 import com.hieunghia.dmt.appnghenhac.Service.APIService;
@@ -24,11 +29,15 @@ import retrofit2.Response;
 
 public class Fragment_Album extends Fragment {
     View view;
-
+    RecyclerView recyclerViewAlbum;
+    TextView txtxemthemalbum;
+    AlbumAdapter albumAdapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_album, container,false);
+        recyclerViewAlbum = view.findViewById(R.id.recyclerviewAlbum);
+        txtxemthemalbum = view.findViewById(R.id.textviewxemthemalbum);
         GetData();
         return view;
     }
@@ -40,7 +49,11 @@ public class Fragment_Album extends Fragment {
             @Override
             public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
                 ArrayList<Album> albumArrayList = (ArrayList<Album>) response.body();
-                        Log.d("BBB",albumArrayList.get(0).getTenAlbum());
+                albumAdapter = new AlbumAdapter(getActivity(), albumArrayList);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                recyclerViewAlbum.setLayoutManager(linearLayoutManager);
+                recyclerViewAlbum.setAdapter(albumAdapter);
             }
 
             @Override
