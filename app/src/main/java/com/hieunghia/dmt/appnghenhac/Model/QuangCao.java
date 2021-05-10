@@ -3,8 +3,10 @@ package com.hieunghia.dmt.appnghenhac.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class QuangCao {
+
+public class QuangCao implements Serializable {
 
     @SerializedName("IdQuangCao")  // conver bien json thanh bien java
     @Expose

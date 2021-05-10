@@ -22,6 +22,12 @@
             android:layout_height="wrap_content"
             ></fragment>
         <fragment
+            android:name="com.hieunghia.dmt.appnghenhac.fragment.Fragment_Chu_De_The_Loai"
+            android:id="@+id/fragmentchudevatheloai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ></fragment>
+        <fragment
             android:name="com.hieunghia.dmt.appnghenhac.fragment.Fragment_Album"
             android:id="@+id/fragmentalbum"
             android:layout_width="match_parent"
