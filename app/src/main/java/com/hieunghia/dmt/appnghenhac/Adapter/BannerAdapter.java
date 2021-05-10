@@ -1,15 +1,18 @@
 package com.hieunghia.dmt.appnghenhac.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.hieunghia.dmt.appnghenhac.Activity.DanhsachbaihatActivity;
 import com.hieunghia.dmt.appnghenhac.Model.QuangCao;
 import com.hieunghia.dmt.appnghenhac.R;
 import com.squareup.picasso.Picasso;
@@ -52,6 +55,15 @@ public class BannerAdapter extends PagerAdapter {
         txttitlesongbanner.setText(arrayListbanner.get(position).getTenBaiHat());
         txtnoidung.setText(arrayListbanner.get(position).getNoiDung());
 
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DanhsachbaihatActivity.class);
+                intent.putExtra("banner",arrayListbanner.get(position));
+                context.startActivity(intent); // ;lệnh chuyển màn hình
+            }
+        });
         container.addView(view);
         return view;
 
