@@ -3,20 +3,9 @@ package com.hieunghia.dmt.appnghenhac.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
+public class BaiHat {
 
-public class QuangCao implements Serializable {
-
-    @SerializedName("IDQuangCao")
-    @Expose
-    private String iDQuangCao;
-    @SerializedName("HinhAnh")
-    @Expose
-    private String hinhAnh;
-    @SerializedName("NoiDung")
-    @Expose
-    private String noiDung;
-    @SerializedName("IdBaiHat")
+    @SerializedName("IDBaiHat")
     @Expose
     private String iDBaiHat;
     @SerializedName("TenBaiHat")
@@ -25,30 +14,15 @@ public class QuangCao implements Serializable {
     @SerializedName("HinhBaiHat")
     @Expose
     private String hinhBaiHat;
-
-    public String getIDQuangCao() {
-        return iDQuangCao;
-    }
-
-    public void setIDQuangCao(String iDQuangCao) {
-        this.iDQuangCao = iDQuangCao;
-    }
-
-    public String getHinhAnh() {
-        return hinhAnh;
-    }
-
-    public void setHinhAnh(String hinhAnh) {
-        this.hinhAnh = hinhAnh;
-    }
-
-    public String getNoiDung() {
-        return noiDung;
-    }
-
-    public void setNoiDung(String noiDung) {
-        this.noiDung = noiDung;
-    }
+    @SerializedName("CaSi")
+    @Expose
+    private String caSi;
+    @SerializedName("LinkBaiHat")
+    @Expose
+    private String linkBaiHat;
+    @SerializedName("LuotThich")
+    @Expose
+    private String luotThich;
 
     public String getIDBaiHat() {
         return iDBaiHat;
@@ -72,6 +46,30 @@ public class QuangCao implements Serializable {
 
     public void setHinhBaiHat(String hinhBaiHat) {
         this.hinhBaiHat = hinhBaiHat;
+    }
+
+    public String getCaSi() {
+        return caSi;
+    }
+
+    public void setCaSi(String caSi) {
+        this.caSi = caSi;
+    }
+
+    public String getLinkBaiHat() {
+        return linkBaiHat;
+    }
+
+    public void setLinkBaiHat(String linkBaiHat) {
+        this.linkBaiHat = linkBaiHat;
+    }
+
+    public String getLuotThich() {
+        return luotThich;
+    }
+
+    public void setLuotThich(String luotThich) {
+        this.luotThich = luotThich;
     }
 
 }

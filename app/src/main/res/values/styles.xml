@@ -13,12 +13,15 @@
     </style>
 
     <style name="SeekBarTheme" parent="Widget.AppCompat.SeekBar">
+
         <item name="colorAccent">#7C4DFF</item>
     </style>
     <style name="colorButtonPlay" parent="Widget.AppCompat.ImageButton">
+
         <item name="colorAccent">#ff20</item>
     </style>
     <style name="roundedImageView" parent="">
+
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>

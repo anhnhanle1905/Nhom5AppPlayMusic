@@ -26,23 +26,26 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/custon_background_banner"></View>
+                android:background="@drawable/custon_background_banner">
+            </View>
             <androidx.appcompat.widget.Toolbar
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:layout_collapseMode="pin"
                 android:id="@+id/toolbardanhsach"
                 android:elevation="6dp"
                 android:layout_width="match_parent"
-                android:layout_height="75dp"></androidx.appcompat.widget.Toolbar>
+                android:layout_height="75dp">
+            </androidx.appcompat.widget.Toolbar>
             <ImageView
                 android:elevation="6dp"
                 android:layout_marginTop="38dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@drawable/iconfloatingactionbutton"
                 android:layout_marginBottom="50dp"
                 android:layout_gravity="center"
                 android:id="@+id/imageviewdanhsachcakhuc"
                 android:layout_width="200dp"
-                android:layout_height="200dp"></ImageView>
+                android:layout_height="200dp">
+            </ImageView>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
