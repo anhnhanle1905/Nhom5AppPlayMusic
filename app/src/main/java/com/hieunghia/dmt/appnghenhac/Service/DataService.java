@@ -6,6 +6,7 @@ import com.hieunghia.dmt.appnghenhac.Model.Album;
 import com.hieunghia.dmt.appnghenhac.Model.BaiHat;
 import com.hieunghia.dmt.appnghenhac.Model.PlayList;
 import com.hieunghia.dmt.appnghenhac.Model.QuangCao;
+import com.hieunghia.dmt.appnghenhac.Model.TheLoai;
 import com.hieunghia.dmt.appnghenhac.Model.TheLoaiHomNay;
 
 import java.util.List;
@@ -43,4 +44,9 @@ public interface DataService {
 
     @GET("danhsachcacplaylist.php")
     Call<List<PlayList>> GetDanhsachcacplaylist();
+
+    @FormUrlEncoded
+    @POST("danhsachbaihat.php")
+    Call<List<BaiHat>> GetDanhsachbaihattheotheloai(@Field("idtheloai") String idtheloai);
+
 }
