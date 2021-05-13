@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 
 import com.hieunghia.dmt.appnghenhac.Activity.DanhsachbaihatActivity;
 import com.hieunghia.dmt.appnghenhac.Activity.DanhsachtatcachudeActivity;
+import com.hieunghia.dmt.appnghenhac.Activity.DanhsachtheloaitheochudeActivity;
 import com.hieunghia.dmt.appnghenhac.Model.ChuDe;
 import com.hieunghia.dmt.appnghenhac.Model.TheLoai;
 import com.hieunghia.dmt.appnghenhac.Model.TheLoaiHomNay;
@@ -87,6 +88,15 @@ public class Fragment_Chu_De_The_Loai extends Fragment {
                     cardView.setLayoutParams(layoutParams);
                     cardView.addView(imageView);
                     linearLayout.addView(cardView);
+                    int finalI = i;
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), DanhsachtheloaitheochudeActivity.class);
+                            intent.putExtra("chude", chuDeArrayList.get(finalI));
+                            startActivity(intent);
+                        }
+                    });
                 }
 
                 for (int j = 0; j < (theLoaiArrayList.size()); j++) // dùng vòng lặp for để gắn ảnh vào
