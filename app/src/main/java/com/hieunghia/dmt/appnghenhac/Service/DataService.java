@@ -4,6 +4,7 @@ import android.provider.MediaStore;
 
 import com.hieunghia.dmt.appnghenhac.Model.Album;
 import com.hieunghia.dmt.appnghenhac.Model.BaiHat;
+import com.hieunghia.dmt.appnghenhac.Model.ChuDe;
 import com.hieunghia.dmt.appnghenhac.Model.PlayList;
 import com.hieunghia.dmt.appnghenhac.Model.QuangCao;
 import com.hieunghia.dmt.appnghenhac.Model.TheLoai;
@@ -48,5 +49,12 @@ public interface DataService {
     @FormUrlEncoded
     @POST("danhsachbaihat.php")
     Call<List<BaiHat>> GetDanhsachbaihattheotheloai(@Field("idtheloai") String idtheloai);
+
+    @GET("tatcachude.php")
+    Call<List<ChuDe>> GetAllChuDe();
+
+    @FormUrlEncoded
+    @POST("theloaitheochude.php")
+    Call<List<TheLoai>> GetTheloaitheochude(@Field("idchude") String idchude);
 
 }
