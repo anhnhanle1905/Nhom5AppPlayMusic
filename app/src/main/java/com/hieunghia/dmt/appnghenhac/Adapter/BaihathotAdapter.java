@@ -1,6 +1,7 @@
 package com.hieunghia.dmt.appnghenhac.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hieunghia.dmt.appnghenhac.Activity.PlayNhacActivity;
 import com.hieunghia.dmt.appnghenhac.Model.BaiHat;
 import com.hieunghia.dmt.appnghenhac.R;
 import com.hieunghia.dmt.appnghenhac.Service.APIService;
@@ -64,6 +66,14 @@ public class BaihathotAdapter extends RecyclerView.Adapter<BaihathotAdapter.View
             txtcasi = itemView.findViewById(R.id.textviewtencasibaihathot);
             imghinh = itemView.findViewById(R.id.imageviewbaihathot);
             imgluotthich = itemView.findViewById(R.id.imageviewluotyeuthich);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, PlayNhacActivity.class);
+                    intent.putExtra("cakhuc", baiHatArrayList.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
             imgluotthich.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

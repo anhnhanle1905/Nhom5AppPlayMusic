@@ -95,6 +95,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                 danhsachbaihatAdapter = new DansachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
                 recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
                 recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+                evenClick();
             }
 
             @Override
@@ -114,6 +115,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                 danhsachbaihatAdapter = new DansachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
                 recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
                 recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+                evenClick();
             }
 
             @Override
@@ -133,6 +135,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                 danhsachbaihatAdapter = new DansachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
                 recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
                 recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+                evenClick();
             }
 
             @Override
@@ -169,6 +172,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                 danhsachbaihatAdapter = new DansachbaihatAdapter(DanhsachbaihatActivity.this, mangbaihat);
                 recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
                 recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+                evenClick();
             }
 
             @Override
@@ -197,6 +201,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         actionBar = getSupportActionBar();
         // showing the back button in action bar
         actionBar.setDisplayHomeAsUpEnabled(true);
+        floatingActionButton.setEnabled(false);
 
     }
 
@@ -226,5 +231,17 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
                 album = (Album) intent.getSerializableExtra("album");
             }
         }
+    }
+    private void evenClick()
+    {
+        floatingActionButton.setEnabled(true);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DanhsachbaihatActivity.this, PlayNhacActivity.class);
+                intent.putExtra("cacbaihat", mangbaihat);
+                startActivity(intent);
+            }
+        });
     }
 }
