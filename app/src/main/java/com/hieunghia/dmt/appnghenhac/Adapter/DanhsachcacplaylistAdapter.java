@@ -1,6 +1,7 @@
 package com.hieunghia.dmt.appnghenhac.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.hieunghia.dmt.appnghenhac.Activity.DanhsachbaihatActivity;
 import com.hieunghia.dmt.appnghenhac.Model.BaiHat;
 import com.hieunghia.dmt.appnghenhac.Model.PlayList;
 import com.hieunghia.dmt.appnghenhac.R;
@@ -53,6 +55,14 @@ public class DanhsachcacplaylistAdapter extends RecyclerView.Adapter<Danhsachcac
             super(itemView);
             imghinhnen = itemView.findViewById(R.id.imageviewdanhsachcacplaylist);
             txttenplaylist = itemView.findViewById(R.id.textviewtendanhsachcacplaylist);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DanhsachbaihatActivity.class);
+                    intent.putExtra("itemplaylist",mangplayList.get(getPosition()));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }
