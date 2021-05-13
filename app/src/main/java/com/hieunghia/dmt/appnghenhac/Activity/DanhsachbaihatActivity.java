@@ -26,6 +26,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hieunghia.dmt.appnghenhac.Adapter.DansachbaihatAdapter;
 import com.hieunghia.dmt.appnghenhac.Model.BaiHat;
+import com.hieunghia.dmt.appnghenhac.Model.PlayList;
 import com.hieunghia.dmt.appnghenhac.Model.QuangCao;
 import com.hieunghia.dmt.appnghenhac.R;
 import com.hieunghia.dmt.appnghenhac.Service.APIService;
@@ -54,7 +55,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     ArrayList<BaiHat> mangbaihat;
     ActionBar actionBar;
     DansachbaihatAdapter danhsachbaihatAdapter;
-
+    PlayList playList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,29 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             setValueInView(quangCao.getTenBaiHat(),quangCao.getHinhBaiHat());
             GetDataQuangCao(quangCao.getIDQuangCao());
         }
+        if (playList != null && !playList.getTen().equals("")) {
+            setValueInView(playList.getTen(),playList.getHinhNen());
+            GetDataPlayList(playList.getIDPlaylist());
+        }
+    }
+
+    private void GetDataPlayList(String idplaylist) {
+        DataService dataService = APIService.getService();
+        Call<List<BaiHat>> callback = dataService.GetDanhsachbaitheoplaylist(idplaylist);
+        callback.enqueue(new Callback<List<BaiHat>>() {
+            @Override
+            public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
+                mangbaihat = (ArrayList<BaiHat>) response.body();
+                danhsachbaihatAdapter = new DansachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<BaiHat>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void setValueInView(String ten, String hinh) {
@@ -141,6 +165,9 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         {
             if (intent.hasExtra("banner")){
                 quangCao = (QuangCao) intent.getSerializableExtra("banner");
+            }
+            if (intent.hasExtra("itemplaylist")){
+                playList = (PlayList) intent.getSerializableExtra("itemplaylist");
             }
         }
     }

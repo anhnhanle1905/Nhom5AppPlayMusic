@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppNgheNhac">
-        <activity android:name=".Activity.DanhsachbaihatActivity"></activity>
-        <activity android:name=".Activity.MainActivity"
+        <activity android:name=".Activity.Danhsachcacplaylist"></activity>
+        <activity android:name=".Activity.DanhsachbaihatActivity" />
+        <activity
+            android:name=".Activity.MainActivity"
             android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

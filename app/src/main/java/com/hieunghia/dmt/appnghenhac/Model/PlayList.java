@@ -4,9 +4,11 @@ package com.hieunghia.dmt.appnghenhac.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PlayList {
+import java.io.Serializable;
 
-    @SerializedName("IDPlaylist")
+public class PlayList implements Serializable {
+
+    @SerializedName("IDPlayList")
     @Expose
     private String iDPlaylist;
     @SerializedName("Ten")
@@ -15,7 +17,7 @@ public class PlayList {
     @SerializedName("HinhNen")
     @Expose
     private String hinhNen;
-    @SerializedName("HinhIcon")
+    @SerializedName("HinhICon")
     @Expose
     private String hinhIcon;
 
