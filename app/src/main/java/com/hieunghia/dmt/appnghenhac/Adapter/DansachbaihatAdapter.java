@@ -6,16 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.hieunghia.dmt.appnghenhac.Model.BaiHat;
 import com.hieunghia.dmt.appnghenhac.R;
+import com.hieunghia.dmt.appnghenhac.Service.APIService;
+import com.hieunghia.dmt.appnghenhac.Service.DataService;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DansachbaihatAdapter extends RecyclerView.Adapter<DansachbaihatAdapter.ViewHolder> {
     Context context;
@@ -58,6 +65,33 @@ public class DansachbaihatAdapter extends RecyclerView.Adapter<DansachbaihatAdap
             txtindex = itemView.findViewById(R.id.textviewdanhsachindex);
             txttenbaihat = itemView.findViewById(R.id.textviewdanhsachtenbaihat);
             imgluotthich = itemView.findViewById(R.id.imageviewcholuotthichdanhsachbaihat);
+            imgluotthich.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    imgluotthich.setImageResource(R.drawable.iconloved);
+                    DataService dataService = APIService.getService();
+                    Call<String> callback = dataService.UpdateLuotThich("1", mangbaihat.get(getPosition()).getIDBaiHat());
+                    callback.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+                            String ketqua = response.body();
+                            if (ketqua.equals("thanhcong")){
+                                Toast.makeText(context, "đã thích",Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(context, "bị lỗi!",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+
+                        }
+                    });
+                    imgluotthich.setEnabled(false);
+                }
+            });
+
         }
     }
 
