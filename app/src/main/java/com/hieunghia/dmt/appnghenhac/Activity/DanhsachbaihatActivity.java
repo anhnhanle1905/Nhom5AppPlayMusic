@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.hieunghia.dmt.appnghenhac.Adapter.DansachbaihatAdapter;
+import com.hieunghia.dmt.appnghenhac.Model.Album;
 import com.hieunghia.dmt.appnghenhac.Model.BaiHat;
 import com.hieunghia.dmt.appnghenhac.Model.PlayList;
 import com.hieunghia.dmt.appnghenhac.Model.QuangCao;
@@ -58,6 +59,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     DansachbaihatAdapter danhsachbaihatAdapter;
     PlayList playList;
     TheLoai theLoai;
+    Album album;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,29 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             setValueInView(theLoai.getTenTheLoai(),theLoai.getHinhTheLoai());
             GetDataTheLoai(theLoai.getIDTheLoai());
         }
+        if (album != null && !album.getTenAlbum().equals("")) {
+            setValueInView(album.getTenAlbum(),album.getHinhAlbum());
+            GetDataAlbum(album.getIDAlbum());
+        }
+    }
+
+    private void GetDataAlbum(String idalbum) {
+        DataService dataService = APIService.getService();
+        Call<List<BaiHat>> callback = dataService.GetDanhsachbaihattheoalbum(idalbum);
+        callback.enqueue(new Callback<List<BaiHat>>() {
+            @Override
+            public void onResponse(Call<List<BaiHat>> call, Response<List<BaiHat>> response) {
+                mangbaihat = (ArrayList<BaiHat>) response.body();
+                danhsachbaihatAdapter = new DansachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
+                recyclerViewdanhsachbaihat.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdanhsachbaihat.setAdapter(danhsachbaihatAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<BaiHat>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void GetDataTheLoai(String idtheloai){
@@ -196,6 +221,9 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             }
             if (intent.hasExtra("idtheloai")){
                 theLoai = (TheLoai) intent.getSerializableExtra("idtheloai");
+            }
+            if (intent.hasExtra("album")){
+                album = (Album) intent.getSerializableExtra("album");
             }
         }
     }
