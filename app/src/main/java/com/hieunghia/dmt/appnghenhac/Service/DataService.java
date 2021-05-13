@@ -36,4 +36,11 @@ public interface DataService {
     @FormUrlEncoded
     @POST("danhsachbaihat.php")                                                                  // vi` ở phần service đặt tương tác vs service là POST nên client phải trùng vs phương thức.
     Call<List<BaiHat>> GetDanhSachBaiHatTheoQuangCao(@Field("idquangcao") String idquangcao);   // gửi dữ liệu lên và trả dữ liệu về.
+
+    @FormUrlEncoded
+    @POST("danhsachbaihat.php")
+    Call<List<BaiHat>> GetDanhsachbaitheoplaylist(@Field("idplaylist") String idplaylist);
+
+    @GET("danhsachcacplaylist.php")
+    Call<List<PlayList>> GetDanhsachcacplaylist();
 }

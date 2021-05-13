@@ -71,11 +71,9 @@ public class Fragment_Banner extends Fragment {
                         }
                         viewPager.setCurrentItem(currentItem, true);
                         handler.postDelayed(runnable,5000 ); // sau 5s nó sẽ tự động lướt qua
-
                     }
                 };
                 handler.postDelayed(runnable, 5000);
-
             }
 
             @Override
