@@ -10,7 +10,7 @@
         android:layout_height="wrap_content">
         <TextView
             android:textColor="@color/black"
-            android:text="co the ban thich"
+            android:text="CÓ THỂ BẠN THÍCH"
             android:textStyle="bold"
             android:textSize="20sp"
             android:layout_width="wrap_content"

@@ -30,6 +30,7 @@ public class Fragment_Bai_Hat_Hot extends Fragment {
     View view;
     RecyclerView recyclerViewbaihathot;
     BaihathotAdapter baihathotAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
