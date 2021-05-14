@@ -228,7 +228,7 @@ import java.util.Random;
                         new PlayMp3().execute(mangbaihat.get(position).getLinkBaiHat());
                         fragment_dia_nhac.PlayNhac(mangbaihat.get(position).getHinhBaiHat());
                         getSupportActionBar().setTitle(mangbaihat.get(position).getTenBaiHat());
-
+                        UpdateSong();
                     }
                 }
                 imgPre.setClickable(false);
@@ -327,6 +327,7 @@ import java.util.Random;
             }
             mediaPlayer.start();
             TimeSong();
+            UpdateSong();
         }
     }
 
@@ -334,6 +335,79 @@ import java.util.Random;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
         txtTotaltimesong.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
         seekbartime.setMax(mediaPlayer.getDuration());
+    }
+    private void UpdateSong(){
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mediaPlayer != null)
+                {
+                    seekbartime.setProgress(mediaPlayer.getCurrentPosition());
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
+                    txtTimeSong.setText(simpleDateFormat.format(mediaPlayer.getCurrentPosition()));
+                    handler.postDelayed(this, 300);
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            nextsong = true;
+                            try {
+                                Thread.sleep(1000);
 
+                            }
+                            catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
+        }, 300);
+        Handler handler1 = new Handler();
+        handler1.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (nextsong == true){
+                    if (position < (mangbaihat.size())){
+                        imgPlay.setImageResource(R.drawable.iconpause);
+                        position--;
+
+                        if (position < 0){
+                            position  = mangbaihat.size() - 1;
+                        }
+                        if (repeat == true){
+                            position += 1;
+                        }
+                        if (checkrandom) {
+                            Random random = new Random();
+                            int index = random.nextInt(mangbaihat.size());
+                            if (index == position){
+                                position = index - 1;
+                            }
+                            position = index;
+                        }
+
+                        new PlayMp3().execute(mangbaihat.get(position).getLinkBaiHat());
+                        fragment_dia_nhac.PlayNhac(mangbaihat.get(position).getHinhBaiHat());
+                        getSupportActionBar().setTitle(mangbaihat.get(position).getTenBaiHat());
+
+                    }
+                    imgPre.setClickable(false);
+                    imgNext.setClickable(false);
+                    Handler handler1 = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            imgPre.setClickable(true);
+                            imgNext.setClickable(true);
+                        }
+                    }, 5000);
+                    nextsong = false;
+                    handler1.removeCallbacks(this);
+                }else {
+                    handler1.postDelayed(this, 1000);
+                }
+            }
+        }, 1000);
     }
 }
