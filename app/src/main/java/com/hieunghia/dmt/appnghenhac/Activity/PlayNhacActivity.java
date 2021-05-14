@@ -1,4 +1,4 @@
-package com.hieunghia.dmt.appnghenhac.Activity;
+    package com.hieunghia.dmt.appnghenhac.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -31,8 +31,9 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
-public class PlayNhacActivity extends AppCompatActivity {
+    public class PlayNhacActivity extends AppCompatActivity {
 
     //TextView txtCasi, txttenbaihat, txtthoigianbatdau, txtthoigianketthuc;
     //ImageView imgbtnback;
@@ -50,6 +51,10 @@ public class PlayNhacActivity extends AppCompatActivity {
     public static ArrayList<BaiHat> mangbaihat = new ArrayList<>();
     public static ViewPagerPlaylistnhac adapternhac;
     MediaPlayer mediaPlayer;
+    int position = 0;
+    boolean repeat = false;
+    boolean checkrandom = false;
+    boolean nextsong = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +96,153 @@ public class PlayNhacActivity extends AppCompatActivity {
                 }
             }
         });
+        imgrepeat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (repeat == false) {
+                    if (checkrandom == true){
+                        checkrandom = false;
+                        imgrepeat.setImageResource(R.drawable.iconsyned);
+                        imgrand.setImageResource(R.drawable.iconsuffle);
+
+                    }
+                    imgrepeat.setImageResource(R.drawable.iconsyned);
+                    repeat = true;
+                }else {
+                    imgrepeat.setImageResource(R.drawable.iconrepeat);
+                    repeat = false;
+                }
+            }
+        });
+        imgrand.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkrandom == false) {
+                    if (repeat == true){
+                        repeat = false;
+                        imgrand.setImageResource(R.drawable.iconsuffle);
+                        imgrepeat.setImageResource(R.drawable.iconrepeat);
+
+                    }
+                    imgrand.setImageResource(R.drawable.iconshuffled);
+                    checkrandom = true;
+                }else {
+                    imgrand.setImageResource(R.drawable.iconsuffle);
+                    checkrandom = false;
+                }
+            }
+        });
+        seekbartime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mediaPlayer.seekTo(seekBar.getProgress());
+            }
+        });
+        imgNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mangbaihat.size() > 0){
+                    if (mediaPlayer.isPlaying() || mediaPlayer != null)
+                    {
+                        mediaPlayer.stop();
+                        mediaPlayer.release();
+                        mediaPlayer = null;
+                    }
+                    if (position < (mangbaihat.size())){
+                        imgPlay.setImageResource(R.drawable.iconpause);
+                        position++;
+                        if (repeat == true){
+                            if (position == 0){
+                                position = mangbaihat.size();
+                            }
+                            position -= 1;
+                        }
+                        if (checkrandom) {
+                            Random random = new Random();
+                            int index = random.nextInt(mangbaihat.size());
+                            if (index == position){
+                                position = index - 1;
+                            }
+                            position = index;
+                        }
+                        if (position > mangbaihat.size() - 1){
+                            position = 0;
+                        }
+                        new PlayMp3().execute(mangbaihat.get(position).getLinkBaiHat());
+                        fragment_dia_nhac.PlayNhac(mangbaihat.get(position).getHinhBaiHat());
+                        getSupportActionBar().setTitle(mangbaihat.get(position).getTenBaiHat());
+
+                    }
+                }
+                imgPre.setClickable(false);
+                imgNext.setClickable(false);
+                Handler handler1 = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imgPre.setClickable(true);
+                        imgNext.setClickable(true);
+                    }
+                }, 5000);
+            }
+        });
+        imgPre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mangbaihat.size() > 0){
+                    if (mediaPlayer.isPlaying() || mediaPlayer != null)
+                    {
+                        mediaPlayer.stop();
+                        mediaPlayer.release();
+                        mediaPlayer = null;
+                    }
+                    if (position < (mangbaihat.size())){
+                        imgPlay.setImageResource(R.drawable.iconpause);
+                        position--;
+
+                        if (position < 0){
+                            position  = mangbaihat.size() - 1;
+                        }
+                        if (repeat == true){
+                            position += 1;
+                        }
+                        if (checkrandom) {
+                            Random random = new Random();
+                            int index = random.nextInt(mangbaihat.size());
+                            if (index == position){
+                                position = index - 1;
+                            }
+                            position = index;
+                        }
+
+                        new PlayMp3().execute(mangbaihat.get(position).getLinkBaiHat());
+                        fragment_dia_nhac.PlayNhac(mangbaihat.get(position).getHinhBaiHat());
+                        getSupportActionBar().setTitle(mangbaihat.get(position).getTenBaiHat());
+
+                    }
+                }
+                imgPre.setClickable(false);
+                imgNext.setClickable(false);
+                Handler handler1 = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        imgPre.setClickable(true);
+                        imgNext.setClickable(true);
+                    }
+                }, 5000);
+            }
+        });
     }
 
     private void GetDataInTent() {
@@ -128,6 +280,8 @@ public class PlayNhacActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                mediaPlayer.stop();
+                mangbaihat.clear();
             }
         });
         toolbarplaynhac.setTitleTextColor(Color.WHITE);
