@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.hieunghia.dmt.appnghenhac.Adapter.DanhsachtheloaitheochudeAdapter;
@@ -60,22 +61,19 @@ public class DanhsachtheloaitheochudeActivity extends AppCompatActivity {
         });
     }
 
-    public boolean onOptionsItemSelected( MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void init() {
         recyclerViewtheloaithechude = findViewById(R.id.recyclerviewtheloaitheochude);
         toolbartheloaitheochude = findViewById(R.id.toobartheloaithechude);
         // calling the action bar
-        ActionBar actionBar = getSupportActionBar();
-        // showing the back button in action bar
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbartheloaitheochude);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbartheloaitheochude.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void GetIntent() {

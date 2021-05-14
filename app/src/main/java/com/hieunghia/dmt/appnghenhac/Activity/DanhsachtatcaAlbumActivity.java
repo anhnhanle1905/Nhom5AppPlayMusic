@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.hieunghia.dmt.appnghenhac.Adapter.AllAlbumAdapter;
 import com.hieunghia.dmt.appnghenhac.Model.Album;
@@ -54,20 +55,18 @@ public class DanhsachtatcaAlbumActivity extends AppCompatActivity {
         });
     }
 
-    public boolean onOptionsItemSelected( MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     private void init() {
         recyclerViewAllalbum = findViewById(R.id.recyclerviewAllalbum);
         toolbar = findViewById(R.id.toobarallalbum);
-        ActionBar actionBar = getSupportActionBar();
-        // showing the back button in action bar
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 }

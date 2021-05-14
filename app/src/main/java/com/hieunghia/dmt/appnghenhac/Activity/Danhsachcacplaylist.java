@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.hieunghia.dmt.appnghenhac.Adapter.DanhsachcacplaylistAdapter;
 import com.hieunghia.dmt.appnghenhac.Model.PlayList;
@@ -57,17 +58,14 @@ public class Danhsachcacplaylist extends AppCompatActivity {
 
     private void init() {
         // calling the action bar
-        ActionBar actionBar = getSupportActionBar();
-        // showing the back button in action bar
-        actionBar.setDisplayHomeAsUpEnabled(true);
-    }
-    public boolean onOptionsItemSelected( MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void anhxa() {
