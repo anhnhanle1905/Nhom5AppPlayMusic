@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.hieunghia.dmt.appnghenhac.Adapter.DanhsachtatcachudeAdapter;
 import com.hieunghia.dmt.appnghenhac.Model.ChuDe;
@@ -55,22 +56,19 @@ public class DanhsachtatcachudeActivity extends AppCompatActivity {
         });
     }
 
-    public boolean onOptionsItemSelected( MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void init() {
         recyclerViewtatcachude = findViewById(R.id.recyclerviewallchude);
         toolbartatcachude = findViewById(R.id.toolbarallchude);
         // calling the action bar
-        ActionBar actionBar = getSupportActionBar();
-        // showing the back button in action bar
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbartatcachude);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbartatcachude.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 }
