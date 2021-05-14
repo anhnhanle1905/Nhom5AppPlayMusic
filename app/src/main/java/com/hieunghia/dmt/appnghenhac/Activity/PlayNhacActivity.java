@@ -32,25 +32,33 @@ public class PlayNhacActivity extends AppCompatActivity {
     ImageButton imgPlay, imgPre, imgNext, imgrepeat, imgrand;
     SeekBar seekbartime;
     ViewPager viewPagerplaynhac;
+    public static ArrayList<BaiHat> mangbaihat = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_nhac);
         init();
+        GetDataInTent();
+
+    }
+
+    private void GetDataInTent() {
         Intent intent = getIntent();
-        if (intent.hasExtra("cakhuc")){
-            BaiHat baiHat = intent.getParcelableExtra("cakhuc");
-            Toast.makeText(this, baiHat.getTenBaiHat(), Toast.LENGTH_SHORT).show();
-        }
-        if (intent.hasExtra("cacbaihat"))
+        mangbaihat.clear();
+        if (intent != null)
         {
-            ArrayList<BaiHat> mangbaihat =intent.getParcelableArrayListExtra("cacbaihat");
-            for (int i = 0; i < mangbaihat.size(); i++)
+            if (intent.hasExtra("cakhuc")){
+                BaiHat baiHat = intent.getParcelableExtra("cakhuc");
+                mangbaihat.add(baiHat);
+            }
+            if (intent.hasExtra("cacbaihat"))
             {
-                Log.d("BBB",mangbaihat.get(i).getTenBaiHat());
+                ArrayList<BaiHat> baiHatArrayList = intent.getParcelableArrayListExtra("cacbaihat");
+                mangbaihat = baiHatArrayList;
             }
         }
+
     }
 
     private void init() {
