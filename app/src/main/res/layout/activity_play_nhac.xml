@@ -79,14 +79,6 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"></ImageButton>
             <ImageButton
-                android:src="@drawable/iconpreview"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:id="@+id/imagebuttonpre"
-                android:layout_marginRight="15dp"
-                android:layout_width="60dp"
-                android:layout_height="60dp"></ImageButton>
-            <ImageButton
                 android:src="@drawable/iconplay"
                 android:scaleType="fitXY"
                 android:background="@null"
