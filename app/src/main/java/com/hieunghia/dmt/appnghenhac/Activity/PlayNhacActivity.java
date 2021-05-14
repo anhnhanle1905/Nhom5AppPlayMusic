@@ -120,7 +120,7 @@ public class PlayNhacActivity extends AppCompatActivity {
         imgrepeat = findViewById(R.id.imagebuttonrepeat);
         imgNext = findViewById(R.id.imagebuttonnext);
         imgrand = findViewById(R.id.imagebuttonsuffle);
-        imgPre = findViewById(R.id.imagebuttonpre);
+        imgPre = findViewById(R.id.imagebuttonpreview);
         viewPagerplaynhac = findViewById(R.id.viewpaperplaynhac);
         setSupportActionBar(toolbarplaynhac);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
