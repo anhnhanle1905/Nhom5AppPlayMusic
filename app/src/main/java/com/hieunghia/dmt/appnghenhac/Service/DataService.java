@@ -9,6 +9,7 @@ import com.hieunghia.dmt.appnghenhac.Model.PlayList;
 import com.hieunghia.dmt.appnghenhac.Model.QuangCao;
 import com.hieunghia.dmt.appnghenhac.Model.TheLoai;
 import com.hieunghia.dmt.appnghenhac.Model.TheLoaiHomNay;
+import com.hieunghia.dmt.appnghenhac.Model.User;
 
 import java.util.List;
 
@@ -67,5 +68,16 @@ public interface DataService {
     @FormUrlEncoded
     @POST("updateluotthich.php")
     Call<String> UpdateLuotThich(@Field("luotthich") String luotthich, @Field("idbaihat") String idbaihat);
+
+    @FormUrlEncoded
+    @POST("InsertUserAccount.php")
+    Call<String> InsertData(@Field("taikhoan") String taikhoan,
+                            @Field("matkhau") String matkhau,
+                            @Field("email") String email,
+                            @Field("sodienthoai") String sodienthoai);
+    @FormUrlEncoded
+    @POST("userLogin.php")
+    Call<List<User>> GetLoginData(@Field("taikhoan") String taikhoan,
+                               @Field("matkhau") String matkhau);
 
 }

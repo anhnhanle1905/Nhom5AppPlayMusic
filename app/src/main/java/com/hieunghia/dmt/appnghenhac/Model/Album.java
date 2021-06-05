@@ -7,8 +7,8 @@ import java.io.Serializable;
 
 public class Album implements Serializable {
 
-@SerializedName("IDAlbum")
-@Expose
+@SerializedName("IDAlbum") // convert biến GSON thành biến JAVA.
+@Expose                    // thực hiện các phương thức convert.
 private String iDAlbum;
 @SerializedName("TenAlbum")
 @Expose
