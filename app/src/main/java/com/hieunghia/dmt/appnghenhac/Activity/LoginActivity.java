@@ -1,6 +1,7 @@
 package com.hieunghia.dmt.appnghenhac.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Build;
@@ -8,12 +9,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hieunghia.dmt.appnghenhac.Model.User;
 import com.hieunghia.dmt.appnghenhac.R;
 import com.hieunghia.dmt.appnghenhac.Service.APIService;
 import com.hieunghia.dmt.appnghenhac.Service.DataService;
+import com.hieunghia.dmt.appnghenhac.fragment.Fragment_Ho_So;
 import com.hieunghia.dmt.appnghenhac.fragment.Fragment_Trang_Chu;
 
 import java.util.ArrayList;
@@ -27,8 +32,11 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     EditText edtUserName,edtPassWord;
+    ImageView imgView,imgFaceBook,imgGoogle;
     CircularProgressButton crpLogin;
     String name,passWord;
+    TextView txtforgetPass, txtnewUser, txtanotherMethods;
+    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +62,11 @@ public class LoginActivity extends AppCompatActivity {
                             ArrayList<User> arrUser = (ArrayList<User>) response.body();
                             if (arrUser.size() > 0)
                             {
-                                Intent intent = new Intent(LoginActivity.this, Fragment_Trang_Chu.class);
-                                intent.putExtra("UserInfo",arrUser);
+                                // truyền dữ liệu qua mainActivity.
+                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                                intent.putExtra("UserName",arrUser.get(0).getTaiKhoan());
+                                intent.putExtra("UserEmail",arrUser.get(0).getEmail());
+                                intent.putExtra("UserPhone",arrUser.get(0).getSoDienThoai());
                                 startActivity(intent);
                             }
                         }
@@ -73,6 +84,13 @@ public class LoginActivity extends AppCompatActivity {
         edtUserName = findViewById(R.id.edtTextName);
         edtPassWord = findViewById(R.id.edtTextPassword);
         crpLogin = findViewById(R.id.cirLoginButton);
+        imgView = findViewById(R.id.imageviewbackgroundlogin);
+        imgFaceBook = findViewById(R.id.imageviewbackgroundfacebook);
+        imgGoogle = findViewById(R.id.imageviewbackgroundgoogle);
+        txtforgetPass = findViewById(R.id.txtforgetpass);
+        txtnewUser = findViewById(R.id.txtnewuser);
+        txtanotherMethods = findViewById(R.id.txtanothermethods);
+        relativeLayout = findViewById(R.id.relativeLogin);
     }
 
     public void onLoginClick(View View){
