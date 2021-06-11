@@ -8,7 +8,8 @@
     android:background="@color/login_bk_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
-    tools:context=".Activity.LoginActivity">
+    tools:context=".Activity.LoginActivity"
+    android:id="@+id/relativeLogin">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,6 +31,7 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/imageviewbackgroundlogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -66,10 +68,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                android:id="@+id/txtforgetpass"
                 style="@style/viewParent"
                 android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 android:text="Forgot Password?"
+                android:onClick="onForgetClick"
                 android:textColor="#E91E63"
                 android:textSize="@dimen/newsMoreTextSize" />x
 
@@ -87,6 +91,7 @@
                 app:spinning_bar_width="4dp" />
 
             <TextView
+                android:id="@+id/txtnewuser"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:onClick="onLoginClick"
@@ -111,13 +116,15 @@
                     android:background="@color/colorPrimaryDark" />
 
                 <TextView
+                    android:id="@+id/txtanothermethods"
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
                     android:text="Use other Methods"
                     android:textAlignment="center"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:gravity="center_horizontal" />
 
                 <View
                     android:layout_width="0dp"
@@ -134,11 +141,13 @@
                 android:gravity="center">
 
                 <ImageView
+                    android:id="@+id/imageviewbackgroundfacebook"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_facebook" />
 
                 <ImageView
+                    android:id="@+id/imageviewbackgroundgoogle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"

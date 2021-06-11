@@ -80,4 +80,8 @@ public interface DataService {
     Call<List<User>> GetLoginData(@Field("taikhoan") String taikhoan,
                                @Field("matkhau") String matkhau);
 
+    @FormUrlEncoded
+    @POST("ForgetPassWord.php")
+    Call<String> GetResetPassWord(@Field("email") String email);
+
 }

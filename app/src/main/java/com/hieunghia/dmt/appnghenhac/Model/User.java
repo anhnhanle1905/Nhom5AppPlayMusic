@@ -51,9 +51,7 @@ public class User implements Parcelable {
         this.id = id;
     }
 
-    public String getTaiKhoan() {
-        return taiKhoan;
-    }
+    public String getTaiKhoan() { return taiKhoan; }
 
     public void setTaiKhoan(String taiKhoan) {
         this.taiKhoan = taiKhoan;

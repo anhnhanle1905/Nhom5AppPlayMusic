@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/fragmenthoso">
+
+    <RelativeLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bacround_gradient"
+        android:layout_marginTop="0dp"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Amanda Burque"
+            android:textColor="#ECE3E3"
+            android:textSize="25sp"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageviewuser"
+        android:layout_width="126dp"
+        android:layout_height="109dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        app:srcCompat="@drawable/ic_user" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/imageviewemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            app:srcCompat="@drawable/ic_email" />
+
+        <TextView
+            android:id="@+id/textviewemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:text="abozquet@biscainepark.org"
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/imageviewemail"/>
+
+        <ImageView
+            android:id="@+id/imageviewphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_below="@+id/imageviewemail"
+            app:srcCompat="@drawable/ic_phone" />
+
+        <TextView
+            android:id="@+id/textviewphone"
+            android:layout_width="239dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="1 (786) 352-2254"
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/imageviewphone"
+            android:layout_below="@+id/textviewemail"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="184dp" />
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/cirProfileLogoutButton"
+            style="@style/loginButton"
+            android:layout_below="@+id/textviewphone"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="100dp"
+            android:layout_toRightOf="@id/imageviewphone"
+            android:text="Log out"
+            app:initialCornerAngle="27dp"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="6dp"
+            app:spinning_bar_width="4dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>
